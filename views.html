@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Drupal 7 Demo</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,400,300' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div id="page-wrapper">
+
+            <header>
+
+                <div id="mobile-menu-trigger">Menu</div>
+
+                <a href="http://www.bowst.com" target="_blank"><h2 id="logo">Bōwst</h2></a>
+                <h1>Drupal 7 Walkthrough</h1>
+
+                <ul id="main-nav">
+                    <li><a href="getting-started.html">Getting Started</a></li>
+                    <li><a href="views.html">Views</a></li>
+                </ul>
+
+            </header>
+
+            <div id="main">
+
+                <h1>Introduction to Views</h1>
+
+                <p>In Drupal 7, Views can be added as a contributed module, but it's almost impossible to build an interesting Drupal site without it. In Drupal 8, Views will be included in core.</p>
+
+                <p>Views lets you create pages or blocks that contain collections of other nodes. You can define specific filter parameters to select which items you want to display, for example "Everything that has type of 'Article' and taxonomy term 'Circus'" will give you all articles about the circus. You can then order and group them with additional options. Views can get extremely complex, with contextual filters that are aware of the current page and current user, or filter options exposed to the viewer so they can refilter the list on their own, etc... But in this demonstration, we will just focus on the basics.</p>
+
+                <h2>Creating a List View</h2>
+
+                <p>To continue with our previous theme of the Mouse Circus, let's make a list of all the mice in our circus. In addition, let's group that list by job: Trapeze Artists, Tightrope Walkers, and Crew Members. Assuming you already have a content type for Circus Mouse with name, bio, and image, let's add the job type as well...</p>
+
+                <h3>Setting up Taxonomy Terms for Grouping</h3>
+
+                <p>The easist way to add a job type option for the mice is to create a taxonomy list. Once you have the job types defined in the taxonomy list, you can add a taxonomy field to the Circus Mouse content type. To create a new taxonomy list, go to Structure > Taxonomy > Add vocabulary. Give your vocabulary a name, such as "Jobs" and add some terms to the list.</p>
+
+                <p>Now if you go back to your Circus Mouse content type, on the Manage Fields tab, you can add a new field called "Job". Use the "Term reference" field type, and select your new Jobs list. Once that is saved, you can select a job for each mouse.</p>
+
+                <h3>Creating a Basic View Page</h3>
+
+                <p>To create a new view page for our list of circus mice, go to <strong>Structure > Views > Add new view.</strong> The initial page for creating a new view gives you some options for the basic structure of your view. All options are editable once you get to the full editing page for the view. For now, let's name our view "Circus Mice" and select "Show <strong>Content</strong> of type <strong>Circus Mouse</strong> sorted by <strong>Title</strong>". We want to create a page for this list, so leave that checked, but uncheck "Use a pager" since we want to display them all on one page. Click "Continue & Edit" to save this view and go to the editing page.</p>
+
+                <p><strong>Each view can have a collection of displays.</strong> The first display we have here is a page. You can also create block views. For example, on a basic blog site you might want to have a view that displays a list of the 3 latest blog posts, to display on your blog homepage. Then in the sidebar (in a block) you could display a list of all the titles of articles that have been posted in the last year, sorted by month.</p>
+
+                <h3>View Configuration</h3>
+
+                <p>Below the list of displays, you will see a collection of options for configuring your view. Clicking any of the settings will allow you to change it's value. If you have already added some Circus Mouse content, you will see it displayed at the bottom of the view editing page. You can check here to get a preview of what will appear in your view as you modify the settings.</p>
+
+                <p>This preview already looks pretty good, but we want to be more specific about what is displaying. In the "Format" section, select "Content" and switch it to "Fields". This will allow us to define exactly which fields we want it to display, instead of using generic content display options. When you save that, it will automatically add one field, "Title". If you click the field to open its options, you will see that it is already linked to the associated content page, which is exactly what we want. If you scroll down to your preview, you will see a list of all mouse names, linked to the mouse profiles. Adding new fields is easy. Simply click the "add" button, search through the list for the field you want to display, and review the display options.</p>
+
+                <h3>Sorting by Taxonomy</h3>
+
+                <p>Now that we have all the mouse names linked to their profiles, we want to sort them in the list by job. To do that, we will first need to add the job field to the view so that we have access to it. Using the "add" button, search for the Job field and add it to your view. In the field options, select "exclude from display" because we want to sort by it, but not display the text next to every mouse name. Also deselect "Create a label" so that we will just get each job name and not "Job: Job Name"</p>
+
+                <p>To group content in a view by a specific field value, go the Format section and edit the format settings. Under "Grouping Field" select "Job". Once you save those settings, check the preview again. You should have a list of all Circus Mice, organized by job title. If you navigate to the /circus-mice page, you will see the list on your site.</p>
+
+
+            </div><!-- / #main -->
+
+        </div><!-- / #page-wrapper -->
+
+        <footer>
+            <p><a href="http://www.bowst.com/" target="_blank">Bōwst</a> | 650 Islington, Portsmouth NH, 03801 | 603-766-8600</p>
+        </footer>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.0.min.js"><\/script>')</script>
+        <script src="js/vendor/jquery.cycle.all.js"></script>
+        <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+        <script src="js/vendor/google-code-prettify/lang-css.js"></script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+    </body>
+</html>

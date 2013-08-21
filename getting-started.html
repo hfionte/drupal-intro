@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Drupal 7 Demo</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,400,300' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div id="page-wrapper">
+
+            <header>
+
+                <div id="mobile-menu-trigger">Menu</div>
+
+                <a href="http://www.bowst.com" target="_blank"><h2 id="logo">Bōwst</h2></a>
+                <h1>Drupal 7 Walkthrough</h1>
+
+                <ul id="main-nav">
+                    <li><a href="getting-started.html">Getting Started</a></li>
+                    <li><a href="views.html">Views</a></li>
+                </ul>
+
+            </header>
+
+            <div id="main">
+
+                <h1>Getting Started</h1>
+                <p>In this introduction we will review how to set up a basic site in Drupal 7, including module installation, setup of custom content types, and a basic theme.</p>
+
+                <ol>
+                    <li><a href="#modules">Modules</a></li>
+                    <li><a href="#custom_theme">Custom Theme</a></li>
+                    <li><a href="#custom_content_types">Custom Content Types</a></li>
+                </ol>
+
+                <h2 id="modules">Modules</h2>
+
+                <p>While the core of Drupal is limited to only basic functionality that almost everyone will need, adding additional functionality is easy. There are tons of great contributed modules available for Drupal. All new modules that you add to your site should be added in sites/all/modules/. Once the module folder has been added to your site files, you can activate it in the admin on the Modules page.</p>
+
+                <h3>You will definitely need these:</h3>
+
+                <p>Views and Wysiwyg will both be included in Drupal 8 core.</p>
+
+                <ul>
+                    <li><strong><a href="https://drupal.org/project/views" target="_blank">Views</a></strong> - Allows for the creation of pages and blocks that are collections of other nodes, with custom filtering and displays.</li>
+                    <li><strong><a href="https://drupal.org/project/ctools" target="_blank">Ctools</a></strong> - Required by Views.</li>
+                    <li><strong><a href="https://drupal.org/project/wysiwyg" target="_blank">WYSIWYG</a></strong> - Adds an input format for using a WYSIWYG editor. You can choose from a wide variety of editors. Download the one you want to use separate from the module into sites/all/libraries/.</li>
+                </ul>
+
+                <h3>You might also want these:</h3>
+
+                <ul>
+                    <li><strong><a href="https://drupal.org/project/globalredirect" target="_blank">Global Redirect</a></strong> - Helps to clean up multiple URLs that point to the same page.</li>
+                    <li><strong><a href="https://drupal.org/project/pathauto" target="_blank">Pathauto</a></strong> - Automatically generates URL aliases for your content so you can have names like my-page-name instead of node/103.</li>
+                    <li><strong><a href="https://drupal.org/project/metatag" target="_blank">Metatag</a></strong> - Adds meta tags for page description, keywords, etc that can be generated automatically (based on configurable settings) or overridden by the content manager.</li>
+                    <li><strong><a href="https://drupal.org/project/media" target="_blank">Media</a></strong> - Adds more advanced media management to Drupal, including the ability to upload images directly into a wysiwyg editor.</li>
+                    <li><strong><a href="https://drupal.org/project/pathologic" target="_blank">Pathologic</a></strong> - An input filter that corrects paths in links and images when you are dealing with multiple base URLs.</li>
+                </ul>
+
+                <h3>Other modules that are useful when core functionality isn't good enough:</h3>
+
+                <ul>
+                    <li><strong><a href="https://drupal.org/project/menu_attributes" target="_blank">Menu Attributes</a></strong> - Lets you add additional attributes to menu links such as class, ID, rel, target, style, etc.</li>
+                    <li><strong><a href="https://drupal.org/project/special_menu_items" target="_blank">Special Menu Items</a></strong> - Lets you add placeholder and separator items to menus.</li>
+                    <li><strong><a href="https://drupal.org/project/nodeblock" target="_blank">Nodeblock</a></strong> - Allows specific node types to be considered "block" nodes. Any content added with those types will be available in the blocks list. Useful for when you need to create a special type of block that has unique fields.</li>
+                    <li><strong><a href="https://drupal.org/project/search_config" target="_blank">Search Configuration</a></strong> - Useful configuration options for Drupal search. I have used this several times to exclude specific pages from search (it adds a checkbox to each node for "exclude from search") but that feature requires installing the beta2 version of the module.</li>
+                </ul>
+
+                <p>If you are ever feeling frustrated with the core functionality of Drupal, and you are thinking "I bet lots of people want to do exactly the same thing I'm trying to do... why is this not included?!" there is probably a module for it. A quick Google search will probably show you the module you need, or an article or thread about how to do it.</p>
+
+                <p>When deciding if you want to install a specific module, first do the following:</p>
+
+                <ol>
+                    <li>Scan the beginning of the <strong>description</strong>. Does it really do what you need?</li>
+                    <li>Scroll to the bottom and look at the number of <strong>reported downloads</strong>. Is it popular?</li>
+                    <li>Scan the additional data in the sidebar. Is it <strong>actively maintained</strong>? Are the open bugs getting resolved?</li>
+                </ol>
+
+                <h2 id="custom_theme">Custom Theme</h2>
+
+                <p>Custom themes added to your site will go in sites/all/themes/. Create a file called themename.info and place it in a folder called themename. (Replace "themename" with whatever you want.)</p>
+
+                <p>themename.info should contain the following:</p>
+
+<pre class="unpretty">
+name = Theme Name
+description = Theme for the Theme Name website.
+core = 7.x
+
+regions[sidebar_first]  = Left sidebar
+regions[sidebar_second] = Right sidebar
+regions[content] = Content
+regions[header] = Header
+regions[footer] = Footer
+regions[highlighted] = Highlighted
+regions[help] = Help
+regions[page_top] = Page Top
+regions[page_bottom] = Page Bottom
+</pre>
+
+                <p>This will set up your theme with a name, description, and Drupal version, and sets up regions for the theme. Listed above are the default regions for Drupal 7, but they are not all required. <strong>The required regions are content, help, page_top, and page_bottom.</strong></p>
+
+                <p>You now have a custom theme! But it's not very interesting yet. Next, create a templates folder where we can override the default Drupal templates. Copy the following files into your themes templates folder:</p>
+
+                <ul>
+                    <li>/modules/system/html.tpl.php</li>
+                    <li>/modules/system/page.tpl.php</li>
+                </ul>
+
+                <p>Once those files exist in your theme, Drupal will automatically use those <em>instead</em> of the versions in the system folder. Sometimes you need to clear the Drupal cache and/or save your theme under the Appearance tab before it will pick up on new templates. Now we are free to edit those files inside our theme however we want. I usually start by stripping out the parts that I don't want, and replacing them with my own boilerplate code. As you replace Drupal code with your own code, be careful not to delete the PHP code that loads each region. In addition to loading regions, there is PHP for some other useful features, such as printing page classes and attributes on the body tag.</p>
+
+                <p><strong>Useful Tip:</strong> If you add &lt;?php global $base_url; ?&gt; to the top of your file, then you can easily print the base URL wherever you need it, making it much easier to build URLs. For example:</p>
+
+<pre class="unpretty">
+&lt;?php global $base_url; ?&gt;
+&lt;img src="&lt;?php print $base_url; ?&gt;/sites/all/themes/mytheme/img/logo.png"&gt;
+</pre>
+
+                <h3>CSS and Javascript in your theme</h3>
+
+                <p>Instead of including links to your CSS and JS directly in the theme templates, you can use your theme.info file to load them. This allows Drupal to have control of CSS and JS files, so that it can aggregate and compress your files to improve performance. Options to turn those features on are located in Settings > Development > Performance. <strong>Warning:</strong> once you turn on those options, you cannot make further changes to your CSS and JS files until you turn it off again.</p>
+
+                <p>Add the following lines to the bottom of your info file, including whatever files you want. The URLs should be relative to your theme folder, where the info file is.</p>
+
+<pre class="unpretty">
+stylesheets[all][] = css/normalize.css
+stylesheets[all][] = css/main.css
+
+scripts[] = js/main.js
+</pre>
+
+                <p>In html.tpl.php your styles and scripts will be loaded with the following code:</p>
+
+<pre class="unpretty">
+&lt;?php print $styles; ?&gt;
+&lt;?php print $scripts; ?&gt;
+</pre>
+
+                <p>Similar to adding new template overrides, sometimes you need to clear the drupal cache or re-save the theme in the admin before it will pick up on changes to the info file.</p>
+
+                <h3>Customizing Theme Regions</h3>
+
+                <p>Not all of the default theme regions are required. In addition, you can add whatever additional regions you want. Regions can be loaded anywhere in your template files. All regions will be available in the blocks list so you can place content in them.</p>
+
+<pre class="unpretty">
+<span class="comment">// In theme.info</span>
+regions[utility] = Utility
+
+<span class="comment">// In page.tpl.php</span>
+&lt;?php print render($page['utility']); ?&gt;
+</pre>
+
+                <p>Before customizing your theme regions, make sure you are familiar with the default regions provided by Drupal. In my experience, they cover most of the areas that you are likely to want to add content to. They also provide some useful features. For example, there are classes added to the body automatically for determining the number of sidebars loaded on the page, which allows you to customize the width of the main content area dynamically based on the presence of sidebars.</p>
+
+                <h2 id="custom_content_types">Custom Content Types</h2>
+
+                <p>Drupal comes with two content types set up for you already: <strong>Article</strong> and <strong>Basic Page</strong>. Basic pages are used for static content pages such as an "about us" page. The article content type is generally used for blog articles or news. You can use these content types as-is, or edit them, or delete them completely. I usually keep the basic page type, and either modify or replace the article type, depending on the needs of the site.</p>
+
+                <p>Many sites have specific types of content that require a more structured approach than a basic page. For example, if you were building a website for your mouse circus, you would want to display a page with a list of all the mice in the circus. In addition to showing the list of all their names, you also want each mouse to have their own page with name, photo, and bio. To do this, you will first need to create a custom content type for "Circus Mouse".</p>
+
+                <h3>Content Type Settings</h3>
+
+                <p>To create a Circus Mouse content type, go to <strong>Structure > Content Types > Add content type.</strong> After naming it, review the settings at the bottom of the page. (These can also be edited later.)</p>
+
+                <ol>
+                    <li><strong>Submission form settings</strong> - Since circus mice have "names" instead of "titles", let's change the title field label to "Name".</li>
+                    <li><strong>Publishing options</strong> - We only want to display circus mice on a special section of the website, so let's turn off "Promoted to front page".</li>
+                    <li><strong>Display settings</strong> - Since circus mice aren't like blog posts with date and author, let's turn off "Display author and date information".</li>
+                    <li><strong>Comment settings</strong> - Let's also turn off comments.</li>
+                    <li><strong>Menu settings</strong> - If we wanted to add the circus mice to a menu, we could configure that here, but instead we are going to create a custom page with the list of all mice. Let's turn off all available menus.</li>
+                </ol>
+
+                <p>Now we are ready to <strong>save and add fields.</strong></p>
+
+                <h3>Adding Fields to a Content Type</h3>
+
+                <p>All new content types come with two default fields: <strong>Title</strong> and <strong>Body</strong>. Title is the only required field. We already renamed the title field to "Name" since that's more appropriate for circus mice. You have two options for adding new fields:</p>
+
+                <ul>
+                    <li><strong>Add new field</strong></li>
+                    <li><strong>Add existing field</strong></li>
+                </ul>
+
+                <p>If we want to create a brand new type of field, "Bio" for example, then we will use the "add new field" option. After we have added the bio field to Circus Mouse, if we create a new content type called Circus Elephant and we want to give elepants a bio field as well, we can <strong>use the "add existing field" option to add that same field to the new content type.</strong> That way, if we later create a list of all circus animals together, the way we display the "bio" will be consistent across all, since it's the same field type.</p>
+
+                <p>We want to be able to display a short bio summary on the list page, as well as the long version on the detail page, so let's use the field type "Long text and summary". The widget type "Text area with a summary" is selected automatically. Some input types have multile widget options. Once you click Save, you will be directed through some options for configuring the field. Review these to see if there is anything you want to change, but the defaults are often fine.</p>
+
+                <p>To finish off our Circus Mouse content type, let's add the existing field type "Image" so we can upload a picture of each mouse. If you have the media module installed, you will notice that the image field has a widget option for "Media file selector" which provides a better interface than the default file uploader. Let's also delete "Body" since we basically replaced the need for that field with our "Bio" field which has a better name for this purpose.</p>
+
+                <h2>Next Steps</h2>
+
+                <p>Now that we have our basic site set up, the next step is to build some views for displaying a list of Circus Mice with links to each mouse profile.</p>
+
+                <p><strong><a href="views.html">Drupal 7 Walkthrough: Working with Views</a></strong></p>
+
+
+
+            </div><!-- / #main -->
+
+        </div><!-- / #page-wrapper -->
+
+        <footer>
+            <p><a href="http://www.bowst.com/" target="_blank">Bōwst</a> | 650 Islington, Portsmouth NH, 03801 | 603-766-8600</p>
+        </footer>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.0.min.js"><\/script>')</script>
+        <script src="js/vendor/jquery.cycle.all.js"></script>
+        <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+        <script src="js/vendor/google-code-prettify/lang-css.js"></script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+    </body>
+</html>
